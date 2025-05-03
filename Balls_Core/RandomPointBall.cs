@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace BallsGame
+namespace Balls_Core
 {
     public class RandomPointBall : MoveBall //в рандом месте
     {
-        public RandomPointBall(MainForm form) : base(form)
+        public RandomPointBall(Form form) : base(form)
         {
             // переопределяем коррдинаты точек для отрисовки на области
             size = random.Next(5,70);

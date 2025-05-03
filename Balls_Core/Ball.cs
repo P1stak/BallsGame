@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 
-namespace BallsGame
+namespace Balls_Core
 {
     public class Ball //дефолт
     {
-        private MainForm form;
+        private Form form;
         protected int x = 150;
         protected int y = 150;
 
@@ -18,7 +19,7 @@ namespace BallsGame
         protected int size = 70;
         protected static Random random = new Random();
 
-        public Ball(MainForm form)
+        public Ball(Form form)
         {
             this.form = form;
         }
@@ -53,13 +54,11 @@ namespace BallsGame
             Clear();
             Go();
 
+            if (x < 0 || x + size > form.ClientSize.Width)
+                vx = -vx;
 
-            // чтобы шарики отскакивали от границ
-            //if (x < 0 || x + size > form.ClientSize.Width)
-            //    vx = -vx;
-
-            //if (y < 0 || y + size > form.ClientSize.Height)
-            //    vy = -vy;
+            if (y < 0 || y + size > form.ClientSize.Height)
+                vy = -vy;
 
             Show();
         }
@@ -72,6 +71,19 @@ namespace BallsGame
         public bool IsCaught() // метод для проверки находится ли шар внутри формочки
         {
             if ((x >= 0 && x + size <= form.ClientSize.Width) && (y >= 0 && y + size <= form.ClientSize.Height))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsClicked(int clickedX, int clickedY)
+        {
+            double centerX = x + size / 2.0;
+            double centerY = y + size / 2.0;
+
+            double distance = Math.Sqrt(Math.Pow(clickedX - centerX, 2) + Math.Pow(clickedY - centerY, 2));
+
+            if (distance <= size / 2.0)
             {
                 return true;
             }
