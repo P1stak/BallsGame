@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 
 namespace BallsGame
@@ -8,9 +9,15 @@ namespace BallsGame
         private MainForm form;
         protected int x = 150;
         protected int y = 150;
-        private int vx = 5;
-        private int vy = 5;
+
+        //скорости
+        protected int vx = 5;
+        protected int vy = 5;
+
+        //размер
         protected int size = 70;
+        protected static Random random = new Random();
+
         public Ball(MainForm form)
         {
             this.form = form;
@@ -19,6 +26,13 @@ namespace BallsGame
         {
             var graphics = form.CreateGraphics(); //холст
             var brash = Brushes.Aqua; //кисточка
+
+            //визуализация пойманных и не пойманных шариков
+            if (IsCaught() == true)
+                brash = Brushes.Chartreuse;
+
+            else brash = Brushes.Red;
+
             var rectangle = new Rectangle(x, y, size, size); //область на котром рисуется
             graphics.FillEllipse(brash, rectangle); //элепс
         }
@@ -38,11 +52,31 @@ namespace BallsGame
         {
             Clear();
             Go();
+
+
+            // чтобы шарики отскакивали от границ
+            //if (x < 0 || x + size > form.ClientSize.Width)
+            //    vx = -vx;
+
+            //if (y < 0 || y + size > form.ClientSize.Height)
+            //    vy = -vy;
+
             Show();
         }
-        public void Stop()
+        public void RandomSizeAndSpeedBalls()
         {
-            x = 0; y = 0;
+            vx = random.Next(-10, 10);
+            vy = random.Next(-10, 10);
+            size = random.Next(5, 70);
         }
+        public bool IsCaught() // метод для проверки находится ли шар внутри формочки
+        {
+            if ((x >= 0 && x + size <= form.ClientSize.Width) && (y >= 0 && y + size <= form.ClientSize.Height))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
