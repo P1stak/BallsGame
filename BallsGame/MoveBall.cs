@@ -1,16 +1,15 @@
-﻿
-
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace BallsGame
 {
-    public class MoveBall : RandomPointBall
+    public class MoveBall : Ball
     {
         private Timer timer;
+
         public MoveBall(MainForm form) : base(form)
         {
             timer = new Timer();
-            timer.Interval = 20;
+            timer.Interval = random.Next(10,50);
             timer.Tick += Timer_Tick;
         }
 
@@ -18,7 +17,6 @@ namespace BallsGame
         {
             Move();
         }
-
         public void Start()
         {
             timer.Start();

@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_Create_Balls = new System.Windows.Forms.Button();
+            this.button_Stop_Balls = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button4
+            // button_Create_Balls
             // 
-            this.button4.Location = new System.Drawing.Point(512, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(182, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Много шаров";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button_Create_Balls.Location = new System.Drawing.Point(643, 13);
+            this.button_Create_Balls.Name = "button_Create_Balls";
+            this.button_Create_Balls.Size = new System.Drawing.Size(62, 23);
+            this.button_Create_Balls.TabIndex = 3;
+            this.button_Create_Balls.Text = "Создать";
+            this.button_Create_Balls.UseVisualStyleBackColor = true;
+            this.button_Create_Balls.Click += new System.EventHandler(this.button_Create_Balls_Click);
             // 
-            // button3
+            // button_Stop_Balls
             // 
-            this.button3.Location = new System.Drawing.Point(700, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Остановить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.button_Stop_Balls.Location = new System.Drawing.Point(711, 12);
+            this.button_Stop_Balls.Name = "button_Stop_Balls";
+            this.button_Stop_Balls.Size = new System.Drawing.Size(77, 24);
+            this.button_Stop_Balls.TabIndex = 5;
+            this.button_Stop_Balls.Text = "Остановить";
+            this.button_Stop_Balls.UseVisualStyleBackColor = true;
+            this.button_Stop_Balls.Click += new System.EventHandler(this.button_Stop_Balls_Click);
             // 
             // MainForm
             // 
@@ -58,18 +58,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button_Stop_Balls);
+            this.Controls.Add(this.button_Create_Balls);
             this.Name = "MainForm";
             this.Text = "Мячики";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_Create_Balls;
+        private System.Windows.Forms.Button button_Stop_Balls;
     }
 }
 

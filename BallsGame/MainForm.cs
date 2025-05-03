@@ -6,39 +6,49 @@ namespace BallsGame
 {
     public partial class MainForm : Form
     {
-        private PointBall pointBall;
-        private List<MoveBall> moveBalls;
-
-
+        private List<MoveBall> _listMoveBall;
         public MainForm()
         {
             InitializeComponent();
+            _listMoveBall = new List<MoveBall>();
+            DoubleBuffered = true;
         }
-
-        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        private void button_Create_Balls_Click(object sender, EventArgs e)
         {
-            pointBall = new PointBall(this, e.X, e.Y); // MousePosition.X, MousePosition.Y
-            pointBall.Show();
-        }
+            foreach (var ball in _listMoveBall)
+            { 
+                ball.Stop();
+            }
+            _listMoveBall.Clear();
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            foreach (MoveBall moveBall in moveBalls)
+            Form form = this;
+            form.Invalidate();
+
+            for (int i = 1; i <= 10; i++)
             {
-                moveBall.Stop();
+                var ball = new RandomSizeAndPointBall(this);
+                _listMoveBall.Add(ball);
+                ball.Start();
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button_Stop_Balls_Click(object sender, EventArgs e)
         {
-            moveBalls = new List<MoveBall>();
-            for (int i = 0; i < 5; i++)
+            foreach (var ball in _listMoveBall)
             {
-                var moveBall = new MoveBall(this);
-                moveBalls.Add(moveBall);
-                moveBall.Start();
+                ball.Stop();
             }
-        }
 
+            var ballsCount = 0;
+
+            foreach (var ball in _listMoveBall)
+            {
+                if (ball.IsCaught() == true)
+                {
+                    ballsCount++;
+                }
+            }
+            MessageBox.Show($"Вы поймали {ballsCount} шариков");
+        }
     }
 }
