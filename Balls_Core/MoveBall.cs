@@ -1,12 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace BallsGame
+namespace Balls_Core
 {
     public class MoveBall : Ball
     {
         private Timer timer;
 
-        public MoveBall(MainForm form) : base(form)
+        public MoveBall(Form form) : base(form)
         {
             timer = new Timer();
             timer.Interval = random.Next(10,50);
