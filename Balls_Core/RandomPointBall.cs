@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Balls_Core
 {
-    public class RandomPointBall : MoveBall //в рандом месте
+    public class RandomPointBall : Ball //в рандом месте
     {
         public RandomPointBall(Form form) : base(form)
         {

@@ -7,11 +7,11 @@ namespace BallsGame
 {
     public partial class MainForm : Form
     {
-        private List<MoveBall> _listMoveBall;
+        private List<RandomSizeAndPointBall> _listMoveBall;
         public MainForm()
         {
             InitializeComponent();
-            _listMoveBall = new List<MoveBall>();
+            _listMoveBall = new List<RandomSizeAndPointBall>();
             DoubleBuffered = true;
         }
         private void button_Create_Balls_Click(object sender, EventArgs e)
@@ -23,9 +23,9 @@ namespace BallsGame
             _listMoveBall.Clear();
 
             Form form = this;
-            form.Invalidate();
+            Invalidate();
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var ball = new RandomSizeAndPointBall(this);
                 _listMoveBall.Add(ball);
@@ -44,12 +44,20 @@ namespace BallsGame
 
             foreach (var ball in _listMoveBall)
             {
-                if (ball.IsCaught() == true)
+                if (ball.IsCaught())
                 {
                     ballsCount++;
                 }
             }
             MessageBox.Show($"Вы поймали {ballsCount} шариков");
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            foreach (var ball in _listMoveBall)
+            {
+                ball.Show(e.Graphics);
+            }
         }
     }
 }

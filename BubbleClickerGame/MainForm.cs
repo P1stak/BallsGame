@@ -6,7 +6,7 @@ namespace BubbleClickerGame
 {
     public partial class MainForm : Form
     {
-        private List<MoveBall> _listBalls;
+        private List<Ball> _listBalls;
         private int _score;
 
         public MainForm()
@@ -16,7 +16,7 @@ namespace BubbleClickerGame
 
             DoubleBuffered = true; // для устранения мерцания
 
-            _listBalls = new List<MoveBall>();
+            _listBalls = new List<Ball>();
             _score = 0;
 
             label_Show_Count.Text = $"Ваш результат: {_score}";
@@ -39,11 +39,21 @@ namespace BubbleClickerGame
             _listBalls.Clear();
 
 
-            for (int i = 1; i <= 20; i++)
+            for (int i = 0; i < 20; i++)
             {
-                var ball = new RandomSizeAndPointBall(this);
+                var ball = new BouncingBall(this);
                 _listBalls.Add(ball);
                 ball.Start();
+            }
+        }
+        
+
+        protected override void OnPaint(PaintEventArgs e) // отрисовали
+        {
+            base.OnPaint(e);
+            foreach (var ball in _listBalls)
+            {
+                ball.Show(e.Graphics);
             }
         }
 

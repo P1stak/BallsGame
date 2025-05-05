@@ -59,28 +59,33 @@ namespace Balls_Core
             centerX += vx;
             centerY += vy;
         }
-        protected virtual void HandleCollisions()
+        protected virtual void HandleCollisions() // базовый метод, который не отражает шарики от поверхностей
         {
-            if (centerX - radius < 0)
-            {
-                vx = -vx;
-                centerX = radius;
-            }
-            if (centerX + radius > form.ClientSize.Width)
-            {
-                vx = -vx;
-                centerX = form.ClientSize.Width - radius;
-            }
-            if (centerY - radius < 0)
-            {
-                vy = -vy;
-                centerY = radius;
-            }
-            if (centerY + radius > form.ClientSize.Height)
-            {
-                vy = -vy;
-                centerY = form.ClientSize.Height - radius;
-            }
+            //protected override void HandleCollisions()
+            //{ 
+            //        base.HandleCollisions();
+
+            //        if (centerX - radius < 0)
+            //        {
+            //            vx = -vx;
+            //            centerX = radius;
+            //        }
+            //        if (centerX + radius > form.ClientSize.Width)
+            //        {
+            //            vx = -vx;
+            //            centerX = form.ClientSize.Width - radius;
+            //        }
+            //        if (centerY - radius < 0)
+            //        {
+            //            vy = -vy;
+            //            centerY = radius;
+            //        }
+            //        if (centerY + radius > form.ClientSize.Height)
+            //        {
+            //            vy = -vy;
+            //            centerY = form.ClientSize.Height - radius;
+            //        }
+            //}
         }
         public bool IsCaught()
         {

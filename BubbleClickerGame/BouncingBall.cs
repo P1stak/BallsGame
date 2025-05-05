@@ -1,20 +1,21 @@
 ﻿using Balls_Core;
 using System;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Billiards_Game
+namespace BubbleClickerGame
 {
-    public class BilliardsBall : Ball
+    public class BouncingBall : Ball
     {
-        public event EventHandler<HitEventArgs> OnHited;
-        public BilliardsBall(Form form) : base(form)
+        public BouncingBall(Form form) : base(form)
         {
-            // чтобы щарик не спавнился в координатах 0 0 и не делал +2 вначале своего появления
             centerX = random.Next(radius, form.ClientSize.Width - radius);
             centerY = random.Next(radius, form.ClientSize.Height - radius);
+            RandomSizeAndSpeedBalls();
         }
-
         protected override void HandleCollisions()
         {
             base.HandleCollisions();
@@ -23,28 +24,22 @@ namespace Billiards_Game
             {
                 vx = -vx;
                 centerX = radius;
-                OnHited.Invoke(this, new HitEventArgs(Side.Left));
             }
             if (centerX + radius > form.ClientSize.Width)
             {
                 vx = -vx;
                 centerX = form.ClientSize.Width - radius;
-                OnHited.Invoke(this, new HitEventArgs(Side.Right));
             }
             if (centerY - radius < 0)
             {
                 vy = -vy;
                 centerY = radius;
-                OnHited.Invoke(this, new HitEventArgs(Side.Top));
             }
             if (centerY + radius > form.ClientSize.Height)
             {
                 vy = -vy;
                 centerY = form.ClientSize.Height - radius;
-                OnHited.Invoke(this, new HitEventArgs(Side.Down));
             }
         }
-
-
     }
 }
