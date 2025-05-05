@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44839682-C185-4B9D-8EBA-8C9B4E072EAD}</ProjectGuid>
+    <ProjectGuid>{324F13AA-D108-4211-90A0-1B8DC4084207}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BubbleClickerGame</RootNamespace>
-    <AssemblyName>BubbleClickerGame</AssemblyName>
+    <RootNamespace>Billiards_Balls</RootNamespace>
+    <AssemblyName>Billiards_Balls</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BouncingBall.cs" />
+    <Compile Include="BilliardBall.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
