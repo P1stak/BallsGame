@@ -29,6 +29,7 @@ namespace Diffusion
             _balls.Clear();
             Invalidate();
 
+
             int centerLine = ClientSize.Width / 2;
 
             // Создаём синие шарики слева
