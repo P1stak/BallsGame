@@ -18,6 +18,11 @@ namespace Balls_Core
 
         public Color BallColor { get; set; } = Color.Aqua;
 
+        public static Random Random
+        {
+            get { return random; }
+        }
+
         public Ball(Form form)
         {
             this.form = form;
@@ -49,7 +54,7 @@ namespace Balls_Core
                 Show(graphics);
             }
         }
-        public void Move()
+        public virtual void Move()
         {
             Go();
             HandleCollisions();
