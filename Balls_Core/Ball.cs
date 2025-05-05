@@ -7,87 +7,97 @@ namespace Balls_Core
 {
     public class Ball //дефолт
     {
-        private Form form;
-        protected int x = 150;
-        protected int y = 150;
-
-        //скорости
+        protected Form form;
         protected int vx = 5;
         protected int vy = 5;
-
-        //размер
-        protected int size = 70;
+        protected int centerX = 10;
+        protected int centerY = 10;
+        protected int radius = 25;
         protected static Random random = new Random();
+        private Timer timer;
+
+        public Color BallColor { get; set; } = Color.Aqua;
 
         public Ball(Form form)
         {
             this.form = form;
+            timer = new Timer();
+            timer.Interval = random.Next(10, 50);
+            timer.Tick += Timer_Tick;
         }
+        public virtual void Show(Graphics graphics)
+        {
+            using (var brush = new SolidBrush(BallColor))
+            {
+                var rect = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+                graphics.FillEllipse(brush, rect);
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Move();
+            form.Invalidate();
+        }
+        public void Start() => timer.Start();
+        public void Stop() => timer.Stop();
+
         public void Show()
         {
-            var graphics = form.CreateGraphics(); //холст
-            var brash = Brushes.Aqua; //кисточка
-
-            //визуализация пойманных и не пойманных шариков
-            if (IsCaught() == true)
-                brash = Brushes.Chartreuse;
-
-            else brash = Brushes.Red;
-
-            var rectangle = new Rectangle(x, y, size, size); //область на котром рисуется
-            graphics.FillEllipse(brash, rectangle); //элепс
+            using (var graphics = form.CreateGraphics())
+            {
+                Show(graphics);
+            }
         }
-        private void Go() //двигаем шарик
+        public void Move()
         {
-            x += vx;
-            y += vy;
-        }
-        private void Clear()
-        {
-            var graphics = form.CreateGraphics();
-            var brash = Brushes.White;
-            var rectangle = new Rectangle(x, y, size, size);
-            graphics.FillEllipse(brash, rectangle);
-        }
-        public void Move() // инкапсулировали методы, тем самым скрыли от пользователя ненужные ему свойства объектов
-        {
-            Clear();
             Go();
-
-            if (x < 0 || x + size > form.ClientSize.Width)
+            HandleCollisions();
+        }
+        protected virtual void Go()
+        {
+            centerX += vx;
+            centerY += vy;
+        }
+        protected virtual void HandleCollisions()
+        {
+            if (centerX - radius < 0)
+            {
                 vx = -vx;
-
-            if (y < 0 || y + size > form.ClientSize.Height)
+                centerX = radius;
+            }
+            if (centerX + radius > form.ClientSize.Width)
+            {
+                vx = -vx;
+                centerX = form.ClientSize.Width - radius;
+            }
+            if (centerY - radius < 0)
+            {
                 vy = -vy;
-
-            Show();
+                centerY = radius;
+            }
+            if (centerY + radius > form.ClientSize.Height)
+            {
+                vy = -vy;
+                centerY = form.ClientSize.Height - radius;
+            }
+        }
+        public bool IsCaught()
+        {
+            return centerX >= radius && centerX <= form.ClientSize.Width - radius &&
+                   centerY >= radius && centerY <= form.ClientSize.Height - radius;
+        }
+        public bool IsClicked(int pointX, int pointY)
+        {
+            var dx = pointX - centerX;
+            var dy = pointY - centerY;
+            return dx * dx + dy * dy <= radius * radius;
         }
         public void RandomSizeAndSpeedBalls()
         {
             vx = random.Next(-10, 10);
             vy = random.Next(-10, 10);
-            size = random.Next(5, 70);
-        }
-        public bool IsCaught() // метод для проверки находится ли шар внутри формочки
-        {
-            if ((x >= 0 && x + size <= form.ClientSize.Width) && (y >= 0 && y + size <= form.ClientSize.Height))
-            {
-                return true;
-            }
-            return false;
-        }
-        public bool IsClicked(int clickedX, int clickedY)
-        {
-            double centerX = x + size / 2.0;
-            double centerY = y + size / 2.0;
-
-            double distance = Math.Sqrt(Math.Pow(clickedX - centerX, 2) + Math.Pow(clickedY - centerY, 2));
-
-            if (distance <= size / 2.0)
-            {
-                return true;
-            }
-            return false;
+            radius = random.Next(5, 70);
         }
 
     }

@@ -8,10 +8,8 @@ namespace Balls_Core
     {
         public RandomPointBall(Form form) : base(form)
         {
-            // переопределяем коррдинаты точек для отрисовки на области
-            size = random.Next(5,70);
-            x = random.Next(0, form.ClientSize.Width - size);
-            y = random.Next(0, form.ClientSize.Height - size);
+            centerX = random.Next(radius, form.ClientSize.Width - radius);
+            centerY = random.Next(radius, form.ClientSize.Height - radius);
         }
     }
 }

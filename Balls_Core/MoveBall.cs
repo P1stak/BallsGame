@@ -11,7 +11,7 @@ namespace Balls_Core
         public MoveBall(Form form) : base(form)
         {
             timer = new Timer();
-            timer.Interval = random.Next(10,50);
+            timer.Interval = random.Next(5, 30);
             timer.Tick += Timer_Tick;
         }
 
@@ -23,7 +23,7 @@ namespace Balls_Core
         {
             timer.Start();
         }
-        public void Stop()
+        public new void Stop()
         {
             timer.Stop();
         }
