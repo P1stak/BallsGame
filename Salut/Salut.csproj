@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}</ProjectGuid>
+    <ProjectGuid>{212C1798-6456-492D-BEF1-6F50FE117D54}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Diffusion</RootNamespace>
-    <AssemblyName>Diffusion</AssemblyName>
+    <RootNamespace>Salut</RootNamespace>
+    <AssemblyName>Salut</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiffusionBall.cs" />
+    <Compile Include="ExplosionBall.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalutBall.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
