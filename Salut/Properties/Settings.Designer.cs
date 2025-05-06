@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Diffusion.Properties
+namespace Salut.Properties
 {
 
 

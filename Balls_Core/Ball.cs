@@ -8,44 +8,41 @@ namespace Balls_Core
     public class Ball //дефолт
     {
         protected Form form;
-        protected int vx = 5;
-        protected int vy = 5;
-        protected int centerX = 10;
-        protected int centerY = 10;
+        protected float vx = 5;
+        protected float vy = 5;
+        protected float centerX = 10;
+        protected float centerY = 10;
         protected int radius = 25;
         protected static Random random = new Random();
         private Timer timer;
 
         public Color BallColor { get; set; } = Color.Aqua;
 
-        public static Random Random
-        {
-            get { return random; }
-        }
+        public static Random Random => random;
 
         public Ball(Form form)
         {
             this.form = form;
-            timer = new Timer();
-            timer.Interval = random.Next(10, 50);
-            timer.Tick += Timer_Tick;
+            //timer = new Timer();
+            //timer.Interval = random.Next(1, 5);
+            //timer.Tick += Timer_Tick;
         }
         public virtual void Show(Graphics graphics)
         {
             using (var brush = new SolidBrush(BallColor))
             {
-                var rect = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+                var rect = new RectangleF(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
                 graphics.FillEllipse(brush, rect);
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            Move();
-            form.Invalidate();
-        }
-        public void Start() => timer.Start();
-        public void Stop() => timer.Stop();
+        //private void Timer_Tick(object sender, EventArgs e)
+        //{
+        //    Move();
+        //    form.Invalidate();
+        //}
+        //public void Start() => timer.Start();
+        //public void Stop() => timer.Stop();
 
         public void Show()
         {
@@ -92,6 +89,8 @@ namespace Balls_Core
             //        }
             //}
         }
+
+        // пойман ли шар
         public bool IsCaught()
         {
             return centerX >= radius && centerX <= form.ClientSize.Width - radius &&
@@ -107,8 +106,14 @@ namespace Balls_Core
         {
             vx = random.Next(-10, 10);
             vy = random.Next(-10, 10);
-            radius = random.Next(5, 70);
+            radius = random.Next(5, 25);
         }
 
+        // метод определяющий, находится ли шар за пределами формочки
+        public bool IsOutOfBounds()
+        {
+            return centerX + radius < 0 || centerX - radius > form.ClientSize.Width ||
+                   centerY + radius < 0 || centerY - radius > form.ClientSize.Height;
+        }
     }
 }

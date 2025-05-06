@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balls_Core", "Balls_Core\Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billiards_Game", "Billiards_Game\Billiards_Game.csproj", "{D0E585EF-E588-4604-BDDB-D3CF0912B3A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffusion", "Diffusion\Diffusion.csproj", "{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salut", "Salut\Salut.csproj", "{212C1798-6456-492D-BEF1-6F50FE117D54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,10 @@ Global
 		{D0E585EF-E588-4604-BDDB-D3CF0912B3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E585EF-E588-4604-BDDB-D3CF0912B3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E585EF-E588-4604-BDDB-D3CF0912B3A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5E7DD32-A41A-4E31-892D-4D6EBEC4C67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212C1798-6456-492D-BEF1-6F50FE117D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212C1798-6456-492D-BEF1-6F50FE117D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212C1798-6456-492D-BEF1-6F50FE117D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212C1798-6456-492D-BEF1-6F50FE117D54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
